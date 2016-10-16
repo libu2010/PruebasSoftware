@@ -18,7 +18,7 @@ namespace BackUProj
         {
             this.movimientoes = new HashSet<movimiento>();
         }
-    
+    //comentario de prueba
         public int idTipoMovimiento { get; set; }
         public string nombreMovimiento { get; set; }
         public string descripcionMovimiento { get; set; }
