@@ -74,9 +74,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BackUPModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="CAlamacenamiento.cs" />
+    <Compile Include="CArchivo.cs" />
+    <Compile Include="CConfiguracion.cs" />
+    <Compile Include="CDirectorio.cs" />
+    <Compile Include="CMovimiento.cs" />
     <Compile Include="configuracion.cs">
       <DependentUpon>BackUPModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="CRegistro.cs" />
+    <Compile Include="CRepositorio.cs" />
+    <Compile Include="CRespaldo.cs" />
+    <Compile Include="CUsuario.cs" />
     <Compile Include="directorio.cs">
       <DependentUpon>BackUPModel.tt</DependentUpon>
     </Compile>
