@@ -16,13 +16,13 @@ namespace BackUProj
     {
         public tipousuario()
         {
-            this.usuariorepositorios = new HashSet<usuariorepositorio>();
+            this.usuariorepositorio = new HashSet<usuariorepositorio>();
         }
     
         public int idTipoUsuario { get; set; }
         public string nombreUsuario { get; set; }
         public string descripcionUsuario { get; set; }
     
-        public virtual ICollection<usuariorepositorio> usuariorepositorios { get; set; }
+        public virtual ICollection<usuariorepositorio> usuariorepositorio { get; set; }
     }
 }

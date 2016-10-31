@@ -16,9 +16,9 @@ namespace BackUProj
     {
         public configuracion()
         {
-            this.almacenamientoes = new HashSet<almacenamiento>();
-            this.directorios = new HashSet<directorio>();
-            this.repositorios = new HashSet<repositorio>();
+            this.almacenamiento = new HashSet<almacenamiento>();
+            this.directorio = new HashSet<directorio>();
+            this.repositorio = new HashSet<repositorio>();
         }
     
         public int idConfiguracion { get; set; }
@@ -26,9 +26,9 @@ namespace BackUProj
         public Nullable<int> incremento { get; set; }
         public Nullable<System.DateTime> fechaEdicion { get; set; }
     
-        public virtual ICollection<almacenamiento> almacenamientoes { get; set; }
+        public virtual ICollection<almacenamiento> almacenamiento { get; set; }
         public virtual respaldo respaldo { get; set; }
-        public virtual ICollection<directorio> directorios { get; set; }
-        public virtual ICollection<repositorio> repositorios { get; set; }
+        public virtual ICollection<directorio> directorio { get; set; }
+        public virtual ICollection<repositorio> repositorio { get; set; }
     }
 }

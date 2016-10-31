@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BackUProj"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" MinHeight="350" Height="700"  MinWidth="525" Width="1050">
+    <StackPanel x:Name="panel_principal" Margin="0,0,0.2,0.4" ToolTip="Repositorios">
+        <Menu x:Name="menu" HorizontalAlignment="Left" Height="35" Width="1033">
+            <MenuItem Header="Repositorio" Height="35" Width="82" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <MenuItem Header="Mis Repositorios" HorizontalAlignment="Left" Width="189" Height="25" Margin="0,0,-49.8,0"/>
+                <MenuItem Header="Nuevo Repositorio" HorizontalAlignment="Left" Width="216" Height="31" Margin="0,0,-76.8,0"/>
+                <MenuItem Header="Unirse a Repositorio" HorizontalAlignment="Left" Width="250" Height="26" Margin="0,0,-76.8,0"/>
+            </MenuItem>
+            <MenuItem Header="Ayuda" ToolTip="Help">
+                <MenuItem Header="Funcionamiento" HorizontalAlignment="Left"/>
+                <MenuItem Header="Acerca De" HorizontalAlignment="Left" Width="139.2"/>
+            </MenuItem>
+        </Menu>
+        <Frame x:Name="frame_principal" Content="Frame" HorizontalAlignment="Left" Height="653" Width="1043" Navigated="frame_Navigated"/>
+    </StackPanel>
 </Window>

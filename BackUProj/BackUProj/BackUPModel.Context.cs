@@ -25,17 +25,17 @@ namespace BackUProj
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<almacenamiento> almacenamientoes { get; set; }
-        public DbSet<archivo> archivoes { get; set; }
-        public DbSet<configuracion> configuracions { get; set; }
-        public DbSet<directorio> directorios { get; set; }
-        public DbSet<movimiento> movimientoes { get; set; }
-        public DbSet<registro> registroes { get; set; }
-        public DbSet<repositorio> repositorios { get; set; }
-        public DbSet<respaldo> respaldoes { get; set; }
-        public DbSet<tipomovimiento> tipomovimientoes { get; set; }
-        public DbSet<tipousuario> tipousuarios { get; set; }
-        public DbSet<usuario> usuarios { get; set; }
-        public DbSet<usuariorepositorio> usuariorepositorios { get; set; }
+        public DbSet<almacenamiento> almacenamiento { get; set; }
+        public DbSet<archivo> archivo { get; set; }
+        public DbSet<configuracion> configuracion { get; set; }
+        public DbSet<directorio> directorio { get; set; }
+        public DbSet<movimiento> movimiento { get; set; }
+        public DbSet<registro> registro { get; set; }
+        public DbSet<repositorio> repositorio { get; set; }
+        public DbSet<respaldo> respaldo { get; set; }
+        public DbSet<tipomovimiento> tipomovimiento { get; set; }
+        public DbSet<tipousuario> tipousuario { get; set; }
+        public DbSet<usuario> usuario { get; set; }
+        public DbSet<usuariorepositorio> usuariorepositorio { get; set; }
     }
 }

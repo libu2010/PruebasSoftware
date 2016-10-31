@@ -16,7 +16,7 @@ namespace BackUProj
     {
         public directorio()
         {
-            this.archivoes = new HashSet<archivo>();
+            this.archivo = new HashSet<archivo>();
         }
     
         public int idDirectorio { get; set; }
@@ -25,7 +25,7 @@ namespace BackUProj
         public string ruta { get; set; }
         public Nullable<decimal> tamanio { get; set; }
     
-        public virtual ICollection<archivo> archivoes { get; set; }
+        public virtual ICollection<archivo> archivo { get; set; }
         public virtual configuracion configuracion { get; set; }
     }
 }

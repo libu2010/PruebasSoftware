@@ -39,6 +39,14 @@
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\MySQL\Connector.NET 6.9\Assemblies\v4.5\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\MySQL\Connector.NET 6.9\Assemblies\v4.5\MySql.Data.Entity.EF6.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -78,6 +86,7 @@
     <Compile Include="CArchivo.cs" />
     <Compile Include="CConfiguracion.cs" />
     <Compile Include="CDirectorio.cs" />
+    <Compile Include="Datos.cs" />
     <Compile Include="CMovimiento.cs" />
     <Compile Include="configuracion.cs">
       <DependentUpon>BackUPModel.tt</DependentUpon>
@@ -95,8 +104,14 @@
     <Compile Include="registro.cs">
       <DependentUpon>BackUPModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="RegistrosPage.xaml.cs">
+      <DependentUpon>RegistrosPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="repositorio.cs">
       <DependentUpon>BackUPModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RepositoriosPage.xaml.cs">
+      <DependentUpon>RepositoriosPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="respaldo.cs">
       <DependentUpon>BackUPModel.tt</DependentUpon>
@@ -135,6 +150,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="RegistrosPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RepositoriosPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -169,7 +192,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="BackUPModel.Context.tt">
@@ -185,6 +210,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

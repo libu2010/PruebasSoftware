@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BackUProj.Properties;
 
 namespace BackUProj
 {
@@ -20,9 +21,19 @@ namespace BackUProj
     /// </summary>
     public partial class MainWindow : Window
     {
+        
+
         public MainWindow()
         {
             InitializeComponent();
+            frame_principal.NavigationService.Navigate(new RepositoriosPage());
+        }
+
+        private void frame_Navigated(object sender, NavigationEventArgs e)
+        {
+            
         }
     }
+
+
 }

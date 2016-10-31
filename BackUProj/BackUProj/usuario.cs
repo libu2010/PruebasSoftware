@@ -14,18 +14,15 @@ namespace BackUProj
     
     public partial class usuario
     {
-        //Instancia de la base de datos Entities db.Find, db.First, db.Where, db.Select
-        backupEntities db = new backupEntities();
-
         public usuario()
         {
-            this.usuariorepositorios = new HashSet<usuariorepositorio>();
+            this.usuariorepositorio = new HashSet<usuariorepositorio>();
         }
     
         public int idUsuario { get; set; }
         public string nombre { get; set; }
         public string contrasenia { get; set; }
     
-        public virtual ICollection<usuariorepositorio> usuariorepositorios { get; set; }
+        public virtual ICollection<usuariorepositorio> usuariorepositorio { get; set; }
     }
 }

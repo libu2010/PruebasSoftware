@@ -16,9 +16,9 @@ namespace BackUProj
     {
         public repositorio()
         {
-            this.movimientoes = new HashSet<movimiento>();
-            this.registroes = new HashSet<registro>();
-            this.usuariorepositorios = new HashSet<usuariorepositorio>();
+            this.movimiento = new HashSet<movimiento>();
+            this.registro = new HashSet<registro>();
+            this.usuariorepositorio = new HashSet<usuariorepositorio>();
         }
     
         public int idRepositorio { get; set; }
@@ -28,8 +28,8 @@ namespace BackUProj
         public string versionEstable { get; set; }
     
         public virtual configuracion configuracion { get; set; }
-        public virtual ICollection<movimiento> movimientoes { get; set; }
-        public virtual ICollection<registro> registroes { get; set; }
-        public virtual ICollection<usuariorepositorio> usuariorepositorios { get; set; }
+        public virtual ICollection<movimiento> movimiento { get; set; }
+        public virtual ICollection<registro> registro { get; set; }
+        public virtual ICollection<usuariorepositorio> usuariorepositorio { get; set; }
     }
 }

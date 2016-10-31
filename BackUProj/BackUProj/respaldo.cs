@@ -16,7 +16,7 @@ namespace BackUProj
     {
         public respaldo()
         {
-            this.configuracions = new HashSet<configuracion>();
+            this.configuracion = new HashSet<configuracion>();
         }
     
         public int idRespaldo { get; set; }
@@ -25,6 +25,6 @@ namespace BackUProj
         public string direccion { get; set; }
         public string ruta { get; set; }
     
-        public virtual ICollection<configuracion> configuracions { get; set; }
+        public virtual ICollection<configuracion> configuracion { get; set; }
     }
 }

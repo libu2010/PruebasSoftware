@@ -16,13 +16,13 @@ namespace BackUProj
     {
         public tipomovimiento()
         {
-            this.movimientoes = new HashSet<movimiento>();
+            this.movimiento = new HashSet<movimiento>();
         }
-    //comentario de prueba
+    
         public int idTipoMovimiento { get; set; }
         public string nombreMovimiento { get; set; }
         public string descripcionMovimiento { get; set; }
     
-        public virtual ICollection<movimiento> movimientoes { get; set; }
+        public virtual ICollection<movimiento> movimiento { get; set; }
     }
 }
