@@ -30,9 +30,9 @@ namespace BackUProj
         public DbSet<configuracion> configuracion { get; set; }
         public DbSet<directorio> directorio { get; set; }
         public DbSet<movimiento> movimiento { get; set; }
+        public DbSet<proyecto> proyecto { get; set; }
         public DbSet<registro> registro { get; set; }
         public DbSet<repositorio> repositorio { get; set; }
-        public DbSet<respaldo> respaldo { get; set; }
         public DbSet<tipomovimiento> tipomovimiento { get; set; }
         public DbSet<tipousuario> tipousuario { get; set; }
         public DbSet<usuario> usuario { get; set; }

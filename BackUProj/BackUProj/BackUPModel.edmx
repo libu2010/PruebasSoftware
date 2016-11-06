@@ -30,7 +30,6 @@
             <PropertyRef Name="idConfiguracion" />
           </Key>
           <Property Name="idConfiguracion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="idRespaldo" Type="int" Nullable="false" />
           <Property Name="incremento" Type="int" />
           <Property Name="fechaEdicion" Type="datetime" Precision="0" />
         </EntityType>
@@ -54,6 +53,15 @@
           <Property Name="idTipoMovimiento" Type="int" Nullable="false" />
           <Property Name="idRepositorio" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="proyecto">
+          <Key>
+            <PropertyRef Name="idProyecto" />
+          </Key>
+          <Property Name="idProyecto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idUsuario" Type="int" Nullable="false" />
+          <Property Name="idConfiguracion" Type="int" Nullable="false" />
+          <Property Name="ruta" Type="varchar" MaxLength="1000" />
+        </EntityType>
         <EntityType Name="registro">
           <Key>
             <PropertyRef Name="idRegistro" />
@@ -74,16 +82,6 @@
           <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="fechaCreacion" Type="datetime" Precision="0" Nullable="false" />
           <Property Name="versionEstable" Type="varchar" MaxLength="45" />
-        </EntityType>
-        <EntityType Name="respaldo">
-          <Key>
-            <PropertyRef Name="idRespaldo" />
-          </Key>
-          <Property Name="idRespaldo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="usuario" Type="varchar" MaxLength="45" />
-          <Property Name="contrasenia" Type="varchar" MaxLength="45" />
-          <Property Name="direccion" Type="varchar" MaxLength="45" />
-          <Property Name="ruta" Type="varchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="tipomovimiento">
           <Key>
@@ -142,18 +140,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_Configuracion_Respaldo1">
-          <End Role="respaldo" Type="Self.respaldo" Multiplicity="1" />
-          <End Role="configuracion" Type="Self.configuracion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="respaldo">
-              <PropertyRef Name="idRespaldo" />
-            </Principal>
-            <Dependent Role="configuracion">
-              <PropertyRef Name="idRespaldo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_Directorio_Configuracion1">
           <End Role="configuracion" Type="Self.configuracion" Multiplicity="1" />
           <End Role="directorio" Type="Self.directorio" Multiplicity="*" />
@@ -187,6 +173,30 @@
             </Principal>
             <Dependent Role="movimiento">
               <PropertyRef Name="idTipoMovimiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Proyecto_Configuracion1">
+          <End Role="configuracion" Type="Self.configuracion" Multiplicity="1" />
+          <End Role="proyecto" Type="Self.proyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="configuracion">
+              <PropertyRef Name="idConfiguracion" />
+            </Principal>
+            <Dependent Role="proyecto">
+              <PropertyRef Name="idConfiguracion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Proyecto_UsuarioRepositorio1">
+          <End Role="usuariorepositorio" Type="Self.usuariorepositorio" Multiplicity="1" />
+          <End Role="proyecto" Type="Self.proyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuariorepositorio">
+              <PropertyRef Name="idUsuarioRepositorio" />
+            </Principal>
+            <Dependent Role="proyecto">
+              <PropertyRef Name="idUsuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -256,9 +266,9 @@
           <EntitySet Name="configuracion" EntityType="Self.configuracion" Schema="backuproj" store:Type="Tables" />
           <EntitySet Name="directorio" EntityType="Self.directorio" Schema="backuproj" store:Type="Tables" />
           <EntitySet Name="movimiento" EntityType="Self.movimiento" Schema="backuproj" store:Type="Tables" />
+          <EntitySet Name="proyecto" EntityType="Self.proyecto" Schema="backuproj" store:Type="Tables" />
           <EntitySet Name="registro" EntityType="Self.registro" Schema="backuproj" store:Type="Tables" />
           <EntitySet Name="repositorio" EntityType="Self.repositorio" Schema="backuproj" store:Type="Tables" />
-          <EntitySet Name="respaldo" EntityType="Self.respaldo" Schema="backuproj" store:Type="Tables" />
           <EntitySet Name="tipomovimiento" EntityType="Self.tipomovimiento" Schema="backuproj" store:Type="Tables" />
           <EntitySet Name="tipousuario" EntityType="Self.tipousuario" Schema="backuproj" store:Type="Tables" />
           <EntitySet Name="usuario" EntityType="Self.usuario" Schema="backuproj" store:Type="Tables" />
@@ -271,10 +281,6 @@
             <End Role="directorio" EntitySet="directorio" />
             <End Role="archivo" EntitySet="archivo" />
           </AssociationSet>
-          <AssociationSet Name="fk_Configuracion_Respaldo1" Association="Self.fk_Configuracion_Respaldo1">
-            <End Role="respaldo" EntitySet="respaldo" />
-            <End Role="configuracion" EntitySet="configuracion" />
-          </AssociationSet>
           <AssociationSet Name="fk_Directorio_Configuracion1" Association="Self.fk_Directorio_Configuracion1">
             <End Role="configuracion" EntitySet="configuracion" />
             <End Role="directorio" EntitySet="directorio" />
@@ -286,6 +292,14 @@
           <AssociationSet Name="fk_Movimiento_TipoMovimiento1" Association="Self.fk_Movimiento_TipoMovimiento1">
             <End Role="tipomovimiento" EntitySet="tipomovimiento" />
             <End Role="movimiento" EntitySet="movimiento" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Proyecto_Configuracion1" Association="Self.fk_Proyecto_Configuracion1">
+            <End Role="configuracion" EntitySet="configuracion" />
+            <End Role="proyecto" EntitySet="proyecto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Proyecto_UsuarioRepositorio1" Association="Self.fk_Proyecto_UsuarioRepositorio1">
+            <End Role="usuariorepositorio" EntitySet="usuariorepositorio" />
+            <End Role="proyecto" EntitySet="proyecto" />
           </AssociationSet>
           <AssociationSet Name="fk_Registro_Repositorio1" Association="Self.fk_Registro_Repositorio1">
             <End Role="repositorio" EntitySet="repositorio" />
@@ -318,9 +332,9 @@
           <EntitySet Name="configuracion" EntityType="backupModel.configuracion" />
           <EntitySet Name="directorio" EntityType="backupModel.directorio" />
           <EntitySet Name="movimiento" EntityType="backupModel.movimiento" />
+          <EntitySet Name="proyecto" EntityType="backupModel.proyecto" />
           <EntitySet Name="registro" EntityType="backupModel.registro" />
           <EntitySet Name="repositorio" EntityType="backupModel.repositorio" />
-          <EntitySet Name="respaldo" EntityType="backupModel.respaldo" />
           <EntitySet Name="tipomovimiento" EntityType="backupModel.tipomovimiento" />
           <EntitySet Name="tipousuario" EntityType="backupModel.tipousuario" />
           <EntitySet Name="usuario" EntityType="backupModel.usuario" />
@@ -333,13 +347,13 @@
             <End Role="directorio" EntitySet="directorio" />
             <End Role="archivo" EntitySet="archivo" />
           </AssociationSet>
-          <AssociationSet Name="fk_Configuracion_Respaldo1" Association="backupModel.fk_Configuracion_Respaldo1">
-            <End Role="respaldo" EntitySet="respaldo" />
-            <End Role="configuracion" EntitySet="configuracion" />
-          </AssociationSet>
           <AssociationSet Name="fk_Directorio_Configuracion1" Association="backupModel.fk_Directorio_Configuracion1">
             <End Role="configuracion" EntitySet="configuracion" />
             <End Role="directorio" EntitySet="directorio" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Proyecto_Configuracion1" Association="backupModel.fk_Proyecto_Configuracion1">
+            <End Role="configuracion" EntitySet="configuracion" />
+            <End Role="proyecto" EntitySet="proyecto" />
           </AssociationSet>
           <AssociationSet Name="fk_Repositorio_Configuracion1" Association="backupModel.fk_Repositorio_Configuracion1">
             <End Role="configuracion" EntitySet="configuracion" />
@@ -352,6 +366,10 @@
           <AssociationSet Name="fk_Movimiento_TipoMovimiento1" Association="backupModel.fk_Movimiento_TipoMovimiento1">
             <End Role="tipomovimiento" EntitySet="tipomovimiento" />
             <End Role="movimiento" EntitySet="movimiento" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Proyecto_UsuarioRepositorio1" Association="backupModel.fk_Proyecto_UsuarioRepositorio1">
+            <End Role="usuariorepositorio" EntitySet="usuariorepositorio" />
+            <End Role="proyecto" EntitySet="proyecto" />
           </AssociationSet>
           <AssociationSet Name="fk_Registro_Repositorio1" Association="backupModel.fk_Registro_Repositorio1">
             <End Role="repositorio" EntitySet="repositorio" />
@@ -397,12 +415,11 @@
             <PropertyRef Name="idConfiguracion" />
           </Key>
           <Property Name="idConfiguracion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idRespaldo" Type="Int32" Nullable="false" />
           <Property Name="incremento" Type="Int32" />
           <Property Name="fechaEdicion" Type="DateTime" />
           <NavigationProperty Name="almacenamiento" Relationship="backupModel.fk_Almacenamiento_Configuracion1" FromRole="configuracion" ToRole="almacenamiento" />
-          <NavigationProperty Name="respaldo" Relationship="backupModel.fk_Configuracion_Respaldo1" FromRole="configuracion" ToRole="respaldo" />
           <NavigationProperty Name="directorio" Relationship="backupModel.fk_Directorio_Configuracion1" FromRole="configuracion" ToRole="directorio" />
+          <NavigationProperty Name="proyecto" Relationship="backupModel.fk_Proyecto_Configuracion1" FromRole="configuracion" ToRole="proyecto" />
           <NavigationProperty Name="repositorio" Relationship="backupModel.fk_Repositorio_Configuracion1" FromRole="configuracion" ToRole="repositorio" />
         </EntityType>
         <EntityType Name="directorio">
@@ -429,6 +446,17 @@
           <NavigationProperty Name="repositorio" Relationship="backupModel.fk_Movimiento_Repositorio1" FromRole="movimiento" ToRole="repositorio" />
           <NavigationProperty Name="tipomovimiento" Relationship="backupModel.fk_Movimiento_TipoMovimiento1" FromRole="movimiento" ToRole="tipomovimiento" />
         </EntityType>
+        <EntityType Name="proyecto">
+          <Key>
+            <PropertyRef Name="idProyecto" />
+          </Key>
+          <Property Name="idProyecto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idUsuario" Type="Int32" Nullable="false" />
+          <Property Name="idConfiguracion" Type="Int32" Nullable="false" />
+          <Property Name="ruta" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="configuracion" Relationship="backupModel.fk_Proyecto_Configuracion1" FromRole="proyecto" ToRole="configuracion" />
+          <NavigationProperty Name="usuariorepositorio" Relationship="backupModel.fk_Proyecto_UsuarioRepositorio1" FromRole="proyecto" ToRole="usuariorepositorio" />
+        </EntityType>
         <EntityType Name="registro">
           <Key>
             <PropertyRef Name="idRegistro" />
@@ -454,17 +482,6 @@
           <NavigationProperty Name="movimiento" Relationship="backupModel.fk_Movimiento_Repositorio1" FromRole="repositorio" ToRole="movimiento" />
           <NavigationProperty Name="registro" Relationship="backupModel.fk_Registro_Repositorio1" FromRole="repositorio" ToRole="registro" />
           <NavigationProperty Name="usuariorepositorio" Relationship="backupModel.fk_UsuarioRepositorio_Repositorio1" FromRole="repositorio" ToRole="usuariorepositorio" />
-        </EntityType>
-        <EntityType Name="respaldo">
-          <Key>
-            <PropertyRef Name="idRespaldo" />
-          </Key>
-          <Property Name="idRespaldo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="usuario" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="contrasenia" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="direccion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="ruta" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="configuracion" Relationship="backupModel.fk_Configuracion_Respaldo1" FromRole="respaldo" ToRole="configuracion" />
         </EntityType>
         <EntityType Name="tipomovimiento">
           <Key>
@@ -501,6 +518,7 @@
           <Property Name="idTipoUsuario" Type="Int32" Nullable="false" />
           <Property Name="idRepositorio" Type="Int32" Nullable="false" />
           <Property Name="idUsuario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="proyecto" Relationship="backupModel.fk_Proyecto_UsuarioRepositorio1" FromRole="usuariorepositorio" ToRole="proyecto" />
           <NavigationProperty Name="repositorio" Relationship="backupModel.fk_UsuarioRepositorio_Repositorio1" FromRole="usuariorepositorio" ToRole="repositorio" />
           <NavigationProperty Name="tipousuario" Relationship="backupModel.fk_UsuarioRepositorio_TipoUsuario1" FromRole="usuariorepositorio" ToRole="tipousuario" />
           <NavigationProperty Name="usuario" Relationship="backupModel.fk_UsuarioRepositorio_Usuario1" FromRole="usuariorepositorio" ToRole="usuario" />
@@ -529,18 +547,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_Configuracion_Respaldo1">
-          <End Type="backupModel.respaldo" Role="respaldo" Multiplicity="1" />
-          <End Type="backupModel.configuracion" Role="configuracion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="respaldo">
-              <PropertyRef Name="idRespaldo" />
-            </Principal>
-            <Dependent Role="configuracion">
-              <PropertyRef Name="idRespaldo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_Directorio_Configuracion1">
           <End Type="backupModel.configuracion" Role="configuracion" Multiplicity="1" />
           <End Type="backupModel.directorio" Role="directorio" Multiplicity="*" />
@@ -549,6 +555,18 @@
               <PropertyRef Name="idConfiguracion" />
             </Principal>
             <Dependent Role="directorio">
+              <PropertyRef Name="idConfiguracion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Proyecto_Configuracion1">
+          <End Type="backupModel.configuracion" Role="configuracion" Multiplicity="1" />
+          <End Type="backupModel.proyecto" Role="proyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="configuracion">
+              <PropertyRef Name="idConfiguracion" />
+            </Principal>
+            <Dependent Role="proyecto">
               <PropertyRef Name="idConfiguracion" />
             </Dependent>
           </ReferentialConstraint>
@@ -586,6 +604,18 @@
             </Principal>
             <Dependent Role="movimiento">
               <PropertyRef Name="idTipoMovimiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Proyecto_UsuarioRepositorio1">
+          <End Type="backupModel.usuariorepositorio" Role="usuariorepositorio" Multiplicity="1" />
+          <End Type="backupModel.proyecto" Role="proyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuariorepositorio">
+              <PropertyRef Name="idUsuarioRepositorio" />
+            </Principal>
+            <Dependent Role="proyecto">
+              <PropertyRef Name="idUsuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -637,7 +667,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -670,7 +700,6 @@
               <MappingFragment StoreEntitySet="configuracion">
                 <ScalarProperty Name="fechaEdicion" ColumnName="fechaEdicion" />
                 <ScalarProperty Name="incremento" ColumnName="incremento" />
-                <ScalarProperty Name="idRespaldo" ColumnName="idRespaldo" />
                 <ScalarProperty Name="idConfiguracion" ColumnName="idConfiguracion" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -697,6 +726,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="proyecto">
+            <EntityTypeMapping TypeName="backupModel.proyecto">
+              <MappingFragment StoreEntitySet="proyecto">
+                <ScalarProperty Name="ruta" ColumnName="ruta" />
+                <ScalarProperty Name="idConfiguracion" ColumnName="idConfiguracion" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="registro">
             <EntityTypeMapping TypeName="backupModel.registro">
               <MappingFragment StoreEntitySet="registro">
@@ -717,17 +756,6 @@
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="idConfiguracion" ColumnName="idConfiguracion" />
                 <ScalarProperty Name="idRepositorio" ColumnName="idRepositorio" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="respaldo">
-            <EntityTypeMapping TypeName="backupModel.respaldo">
-              <MappingFragment StoreEntitySet="respaldo">
-                <ScalarProperty Name="ruta" ColumnName="ruta" />
-                <ScalarProperty Name="direccion" ColumnName="direccion" />
-                <ScalarProperty Name="contrasenia" ColumnName="contrasenia" />
-                <ScalarProperty Name="usuario" ColumnName="usuario" />
-                <ScalarProperty Name="idRespaldo" ColumnName="idRespaldo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

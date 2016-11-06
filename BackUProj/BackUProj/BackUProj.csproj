@@ -51,8 +51,10 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -62,9 +64,11 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -86,6 +90,9 @@
     <Compile Include="CArchivo.cs" />
     <Compile Include="CConfiguracion.cs" />
     <Compile Include="CDirectorio.cs" />
+    <Compile Include="ConfiguracionPage.xaml.cs">
+      <DependentUpon>ConfiguracionPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Datos.cs" />
     <Compile Include="CMovimiento.cs" />
     <Compile Include="configuracion.cs">
@@ -101,6 +108,9 @@
     <Compile Include="movimiento.cs">
       <DependentUpon>BackUPModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="proyecto.cs">
+      <DependentUpon>BackUPModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="registro.cs">
       <DependentUpon>BackUPModel.tt</DependentUpon>
     </Compile>
@@ -112,9 +122,6 @@
     </Compile>
     <Compile Include="RepositoriosPage.xaml.cs">
       <DependentUpon>RepositoriosPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="respaldo.cs">
-      <DependentUpon>BackUPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tipomovimiento.cs">
       <DependentUpon>BackUPModel.tt</DependentUpon>
@@ -128,6 +135,10 @@
     <Compile Include="usuariorepositorio.cs">
       <DependentUpon>BackUPModel.tt</DependentUpon>
     </Compile>
+    <Page Include="ConfiguracionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

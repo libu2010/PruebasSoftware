@@ -18,17 +18,17 @@ namespace BackUProj
         {
             this.almacenamiento = new HashSet<almacenamiento>();
             this.directorio = new HashSet<directorio>();
+            this.proyecto = new HashSet<proyecto>();
             this.repositorio = new HashSet<repositorio>();
         }
     
         public int idConfiguracion { get; set; }
-        public int idRespaldo { get; set; }
         public Nullable<int> incremento { get; set; }
         public Nullable<System.DateTime> fechaEdicion { get; set; }
     
         public virtual ICollection<almacenamiento> almacenamiento { get; set; }
-        public virtual respaldo respaldo { get; set; }
         public virtual ICollection<directorio> directorio { get; set; }
+        public virtual ICollection<proyecto> proyecto { get; set; }
         public virtual ICollection<repositorio> repositorio { get; set; }
     }
 }

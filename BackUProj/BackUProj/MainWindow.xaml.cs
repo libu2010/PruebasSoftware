@@ -33,6 +33,11 @@ namespace BackUProj
         {
             
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            frame_principal.NavigationService.Navigate(new ConfiguracionPage());
+        }
     }
 
 
