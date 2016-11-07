@@ -38,6 +38,16 @@ namespace BackUProj
         {
             frame_principal.NavigationService.Navigate(new ConfiguracionPage());
         }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            frame_principal.NavigationService.Navigate(new RepositoriosPage());
+        }
+
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+            frame_principal.NavigationService.Navigate(new UnirseARepositorioPage());
+        }
     }
 
 

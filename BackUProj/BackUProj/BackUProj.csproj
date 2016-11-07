@@ -129,6 +129,9 @@
     <Compile Include="tipousuario.cs">
       <DependentUpon>BackUPModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="UnirseARepositorioPage.xaml.cs">
+      <DependentUpon>UnirseARepositorioPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="usuario.cs">
       <DependentUpon>BackUPModel.tt</DependentUpon>
     </Compile>
@@ -166,6 +169,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RepositoriosPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UnirseARepositorioPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
