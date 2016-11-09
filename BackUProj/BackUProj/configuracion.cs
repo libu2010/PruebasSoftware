@@ -23,7 +23,7 @@ namespace BackUProj
         }
     
         public int idConfiguracion { get; set; }
-        public Nullable<int> incremento { get; set; }
+        public string incremento { get; set; }
         public Nullable<System.DateTime> fechaEdicion { get; set; }
     
         public virtual ICollection<almacenamiento> almacenamiento { get; set; }

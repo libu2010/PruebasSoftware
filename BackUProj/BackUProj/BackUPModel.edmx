@@ -30,7 +30,7 @@
             <PropertyRef Name="idConfiguracion" />
           </Key>
           <Property Name="idConfiguracion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="incremento" Type="int" />
+          <Property Name="incremento" Type="varchar" MaxLength="10" />
           <Property Name="fechaEdicion" Type="datetime" Precision="0" />
         </EntityType>
         <EntityType Name="directorio">
@@ -415,7 +415,7 @@
             <PropertyRef Name="idConfiguracion" />
           </Key>
           <Property Name="idConfiguracion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="incremento" Type="Int32" />
+          <Property Name="incremento" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="fechaEdicion" Type="DateTime" />
           <NavigationProperty Name="almacenamiento" Relationship="backupModel.fk_Almacenamiento_Configuracion1" FromRole="configuracion" ToRole="almacenamiento" />
           <NavigationProperty Name="directorio" Relationship="backupModel.fk_Directorio_Configuracion1" FromRole="configuracion" ToRole="directorio" />
