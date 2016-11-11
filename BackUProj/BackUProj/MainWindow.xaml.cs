@@ -26,12 +26,12 @@ namespace BackUProj
         public MainWindow()
         {
             InitializeComponent();
-            frame_principal.NavigationService.Navigate(new RepositoriosPage());
+            frame_principal.NavigationService.Navigate(new LoginPage());
         }
 
         private void frame_Navigated(object sender, NavigationEventArgs e)
         {
-            
+
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -48,6 +48,12 @@ namespace BackUProj
         {
             frame_principal.NavigationService.Navigate(new UnirseARepositorioPage());
         }
+    }
+
+    public class UsuarioLogueado
+    {
+        public usuario usuario { get; set; }
+        
     }
 
 

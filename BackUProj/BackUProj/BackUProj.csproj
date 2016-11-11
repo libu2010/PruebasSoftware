@@ -105,6 +105,9 @@
     <Compile Include="directorio.cs">
       <DependentUpon>BackUPModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="movimiento.cs">
       <DependentUpon>BackUPModel.tt</DependentUpon>
     </Compile>
@@ -139,6 +142,10 @@
       <DependentUpon>BackUPModel.tt</DependentUpon>
     </Compile>
     <Page Include="ConfiguracionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
