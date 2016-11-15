@@ -15,6 +15,7 @@ namespace BackUProj
     public partial class registro
     {
         public int idRegistro { get; set; }
+        public int idUsuario { get; set; }
         public int idRepositorio { get; set; }
         public string versionDefault { get; set; }
         public string versionNominal { get; set; }
@@ -22,5 +23,6 @@ namespace BackUProj
         public Nullable<System.DateTime> fechaCreacion { get; set; }
     
         public virtual repositorio repositorio { get; set; }
+        public virtual usuario usuario { get; set; }
     }
 }

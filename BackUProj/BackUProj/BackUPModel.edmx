@@ -67,6 +67,7 @@
             <PropertyRef Name="idRegistro" />
           </Key>
           <Property Name="idRegistro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idUsuario" Type="int" Nullable="false" />
           <Property Name="idRepositorio" Type="int" Nullable="false" />
           <Property Name="versionDefault" Type="varchar" MaxLength="45" />
           <Property Name="versionNominal" Type="varchar" MaxLength="45" />
@@ -82,6 +83,7 @@
           <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="fechaCreacion" Type="datetime" Precision="0" Nullable="false" />
           <Property Name="versionEstable" Type="varchar" MaxLength="45" />
+          <Property Name="ultimaVersion" Type="varchar" MaxLength="45" />
         </EntityType>
         <EntityType Name="tipomovimiento">
           <Key>
@@ -212,6 +214,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_Registro_Usuario1">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+          <End Role="registro" Type="Self.registro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="registro">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_Repositorio_Configuracion1">
           <End Role="configuracion" Type="Self.configuracion" Multiplicity="1" />
           <End Role="repositorio" Type="Self.repositorio" Multiplicity="*" />
@@ -305,6 +319,10 @@
             <End Role="repositorio" EntitySet="repositorio" />
             <End Role="registro" EntitySet="registro" />
           </AssociationSet>
+          <AssociationSet Name="fk_Registro_Usuario1" Association="Self.fk_Registro_Usuario1">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="registro" EntitySet="registro" />
+          </AssociationSet>
           <AssociationSet Name="fk_Repositorio_Configuracion1" Association="Self.fk_Repositorio_Configuracion1">
             <End Role="configuracion" EntitySet="configuracion" />
             <End Role="repositorio" EntitySet="repositorio" />
@@ -373,6 +391,10 @@
           </AssociationSet>
           <AssociationSet Name="fk_Registro_Repositorio1" Association="backupModel.fk_Registro_Repositorio1">
             <End Role="repositorio" EntitySet="repositorio" />
+            <End Role="registro" EntitySet="registro" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Registro_Usuario1" Association="backupModel.fk_Registro_Usuario1">
+            <End Role="usuario" EntitySet="usuario" />
             <End Role="registro" EntitySet="registro" />
           </AssociationSet>
           <AssociationSet Name="fk_UsuarioRepositorio_Repositorio1" Association="backupModel.fk_UsuarioRepositorio_Repositorio1">
@@ -462,12 +484,14 @@
             <PropertyRef Name="idRegistro" />
           </Key>
           <Property Name="idRegistro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idUsuario" Type="Int32" Nullable="false" />
           <Property Name="idRepositorio" Type="Int32" Nullable="false" />
           <Property Name="versionDefault" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="versionNominal" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="descripcion" Type="String" MaxLength="10000" FixedLength="false" Unicode="false" />
           <Property Name="fechaCreacion" Type="DateTime" />
           <NavigationProperty Name="repositorio" Relationship="backupModel.fk_Registro_Repositorio1" FromRole="registro" ToRole="repositorio" />
+          <NavigationProperty Name="usuario" Relationship="backupModel.fk_Registro_Usuario1" FromRole="registro" ToRole="usuario" />
         </EntityType>
         <EntityType Name="repositorio">
           <Key>
@@ -478,6 +502,7 @@
           <Property Name="nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="fechaCreacion" Type="DateTime" Nullable="false" />
           <Property Name="versionEstable" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="ultimaVersion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="configuracion" Relationship="backupModel.fk_Repositorio_Configuracion1" FromRole="repositorio" ToRole="configuracion" />
           <NavigationProperty Name="movimiento" Relationship="backupModel.fk_Movimiento_Repositorio1" FromRole="repositorio" ToRole="movimiento" />
           <NavigationProperty Name="registro" Relationship="backupModel.fk_Registro_Repositorio1" FromRole="repositorio" ToRole="registro" />
@@ -508,6 +533,7 @@
           <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="contrasenia" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="registro" Relationship="backupModel.fk_Registro_Usuario1" FromRole="usuario" ToRole="registro" />
           <NavigationProperty Name="usuariorepositorio" Relationship="backupModel.fk_UsuarioRepositorio_Usuario1" FromRole="usuario" ToRole="usuariorepositorio" />
         </EntityType>
         <EntityType Name="usuariorepositorio">
@@ -631,6 +657,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_Registro_Usuario1">
+          <End Type="backupModel.usuario" Role="usuario" Multiplicity="1" />
+          <End Type="backupModel.registro" Role="registro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="registro">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_UsuarioRepositorio_Repositorio1">
           <End Type="backupModel.repositorio" Role="repositorio" Multiplicity="1" />
           <End Type="backupModel.usuariorepositorio" Role="usuariorepositorio" Multiplicity="*" />
@@ -744,6 +782,7 @@
                 <ScalarProperty Name="versionNominal" ColumnName="versionNominal" />
                 <ScalarProperty Name="versionDefault" ColumnName="versionDefault" />
                 <ScalarProperty Name="idRepositorio" ColumnName="idRepositorio" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
                 <ScalarProperty Name="idRegistro" ColumnName="idRegistro" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -751,6 +790,7 @@
           <EntitySetMapping Name="repositorio">
             <EntityTypeMapping TypeName="backupModel.repositorio">
               <MappingFragment StoreEntitySet="repositorio">
+                <ScalarProperty Name="ultimaVersion" ColumnName="ultimaVersion" />
                 <ScalarProperty Name="versionEstable" ColumnName="versionEstable" />
                 <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />

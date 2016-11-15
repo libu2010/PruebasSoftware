@@ -16,6 +16,7 @@ namespace BackUProj
     {
         public usuario()
         {
+            this.registro = new HashSet<registro>();
             this.usuariorepositorio = new HashSet<usuariorepositorio>();
         }
     
@@ -23,6 +24,7 @@ namespace BackUProj
         public string nombre { get; set; }
         public string contrasenia { get; set; }
     
+        public virtual ICollection<registro> registro { get; set; }
         public virtual ICollection<usuariorepositorio> usuariorepositorio { get; set; }
     }
 }

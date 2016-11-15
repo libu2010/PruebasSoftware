@@ -26,6 +26,9 @@ namespace BackUProj
         public MainWindow()
         {
             InitializeComponent();
+            Datos.menu = menu;
+            Datos.cambiarVisibilidadMenu();
+            Datos.repositorio_actual = 0;
             frame_principal.NavigationService.Navigate(new LoginPage());
         }
 

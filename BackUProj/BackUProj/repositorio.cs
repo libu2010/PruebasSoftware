@@ -26,6 +26,7 @@ namespace BackUProj
         public string nombre { get; set; }
         public System.DateTime fechaCreacion { get; set; }
         public string versionEstable { get; set; }
+        public string ultimaVersion { get; set; }
     
         public virtual configuracion configuracion { get; set; }
         public virtual ICollection<movimiento> movimiento { get; set; }
