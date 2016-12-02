@@ -30,6 +30,7 @@ namespace BackUProj
             Datos.cambiarVisibilidadMenu();
             Datos.repositorio_actual = 0;
             frame_principal.NavigationService.Navigate(new LoginPage());
+            Datos.ventana = this;
         }
 
         private void frame_Navigated(object sender, NavigationEventArgs e)
@@ -58,6 +59,5 @@ namespace BackUProj
         public usuario usuario { get; set; }
         
     }
-
 
 }

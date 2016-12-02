@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BackUProj"
         mc:Ignorable="d"
-        Title="MainWindow" MinHeight="350" Height="714.887"  MinWidth="525" Width="1065.415" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True">
+        Title="BackUProj" MinHeight="350" Height="714.887"  MinWidth="525" Width="1065.415" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True">
 
     <StackPanel x:Name="panel_principal" Margin="0,0,0.2,0.4" ToolTip="Repositorios">
         <Menu IsMainMenu="True" x:Name="menu" HorizontalAlignment="Left" Height="32" Width="1056" ScrollViewer.VerticalScrollBarVisibility="Hidden">
